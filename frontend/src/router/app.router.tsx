@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router";
 import HomePage from "@/pages/HomePage";
-import ProductPageLayout from "@/Layouts/ProductPageLayout";
-import AllProductsByCategory from "@/pages/AllProductsByCategory";
+import ProductPageLayout from "@/layouts/ProductPageLayout";
+import AllProductsLayout from "@/layouts/AllProductsLayout";
 
 const appRouter = createBrowserRouter([
     {
@@ -15,7 +15,7 @@ const appRouter = createBrowserRouter([
     },
     {
         path: '/all-products/:categoryFilter',
-        element: <AllProductsByCategory />
+        element: <AllProductsLayout />
     }
 ]);
 

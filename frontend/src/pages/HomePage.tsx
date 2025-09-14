@@ -1,9 +1,9 @@
-import Hero from "@/components/Hero";
-import FeaturedProducts from "@/components/FeaturedProducts";
-import ExploreCategories from "@/components/ExploreCategories";
-import Newsletter from "@/components/Newsletter";
-import Footer from "@/components/Footer";
-import Navbar from "@/components/Navbar";
+import Hero from "@/components/home/Hero";
+import FeaturedProducts from "@/components/home/FeaturedProducts";
+import ExploreCategories from "@/components/home/ExploreCategories";
+import Newsletter from "@/components/home/Newsletter";
+import Footer from "@/components/layout/Footer";
+import Navbar from "@/components/layout/Navbar";
 
 const HomePage = () => {
     return (

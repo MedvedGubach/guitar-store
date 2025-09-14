@@ -1,5 +1,5 @@
 import { Facebook, Instagram, Mail, MapPin, Phone, Twitter, Youtube } from "lucide-react"
-import { Button } from "./ui/button"
+import { Button } from "../ui/button"
 
 const Footer = () => {
 
@@ -93,7 +93,7 @@ const Footer = () => {
                             </li>
                             <li>
                                 <a href="#" className="hover:text-primary transition-colors">
-                                    Contacto
+                                    Contact
                                 </a>
                             </li>
                             <li>
@@ -133,7 +133,7 @@ const Footer = () => {
                     </div>
                 </div>
 
-                <div className="border-t mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <div className="border-t mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 mb-4">
                     <p className="text-muted-foreground text-sm">© {year} ElectricGuitar Store. All rights reserved.</p>
                     <div className="flex gap-6 text-sm text-muted-foreground">
                         <a href="#" className="hover:text-primary transition-colors">
@@ -146,6 +146,12 @@ const Footer = () => {
                             Cookies
                         </a>
                     </div>
+                </div>
+
+                <div>
+                    <p className="text-red-500 font-thin text-sm text-pretty text-center">
+                        This project is a personal portfolio demo. I do not own any rights over the product images or brand logos displayed. All trademarks, images, and product names are the property of their respective owners. No affiliation or monetization is intended
+                    </p>
                 </div>
             </div>
         </footer>

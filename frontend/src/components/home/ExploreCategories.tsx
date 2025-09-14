@@ -1,7 +1,7 @@
 
 import { Card, CardContent } from "@/components/ui/card"
 import { Fragment } from "react/jsx-runtime"
-import { Button } from "./ui/button"
+import { Button } from "../ui/button"
 import { ArrowRight } from "lucide-react"
 import { Link } from "react-router"
 const ExploreCategories = () => {

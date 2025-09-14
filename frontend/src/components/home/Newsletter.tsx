@@ -1,6 +1,6 @@
 import { Mail, Mailbox } from "lucide-react"
-import { Input } from "./ui/input"
-import { Button } from "./ui/button"
+import { Input } from "../ui/input"
+import { Button } from "../ui/button"
 
 const Newsletter = () => {
     return (
