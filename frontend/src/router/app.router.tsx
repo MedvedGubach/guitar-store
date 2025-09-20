@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router";
 import HomePage from "@/pages/HomePage";
 import ProductPageLayout from "@/layouts/ProductPageLayout";
 import AllProductsLayout from "@/layouts/AllProductsLayout";
+import CartCheckoutLayout from "@/layouts/CartCheckoutLayout";
 
 const appRouter = createBrowserRouter([
     {
@@ -16,6 +17,10 @@ const appRouter = createBrowserRouter([
     {
         path: '/all-products/:categoryFilter',
         element: <AllProductsLayout />
+    },
+    {
+        path: '/cart-checkout',
+        element: <CartCheckoutLayout />
     }
 ]);
 

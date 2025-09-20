@@ -6,11 +6,10 @@ import { Button } from "@/components/ui/button";
 const AllProductsByCategory = () => {
 
     const filter = useLocation();
-    const { data, loading, error } = useProducts();
-    const products = data.filter(product => product.category === filter.state);
+    const { loading, error } = useProducts();
 
-    console.log('products-----:', products);
-    console.log(filter);
+
+    console.log('filter-----:', filter.state);
 
     if (loading) return (<p className="text-white text-2xl font-bold animate-pulse text-center">Loading...</p>)
     if (error) return (<p className="text-red-500 text-2xl font-bold animate-pulse">Error!</p>)
@@ -30,7 +29,7 @@ const AllProductsByCategory = () => {
 
                 <div className="flex-1 overflow-y-auto p-4">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-                        <ProductCards categoryFilter={filter.state} />
+                        <ProductCards categoryFilter={filter.state} topSellerFilter={false} />
                     </div>
                 </div>
             </div>

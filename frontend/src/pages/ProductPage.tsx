@@ -1,18 +1,39 @@
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router";
+import ProductDescription from "@/components/products/ProductDescription";
 import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from "@/components/ui/carousel";
 import { Button } from "@/components/ui/button";
 import { BadgeAlert, BadgeCheck, ShoppingBag, ShoppingCart } from "lucide-react";
 import { Input } from "@/components/ui/input";
-import { useState } from "react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import ProductDescription from "@/components/products/ProductDescription";
+import type { ProductInfo } from "@/interfaces/ProductInfo";
 
 const ProductPage = () => {
     const location = useLocation();
     const productData = location.state || {};
     const [amount, setAmount] = useState<number>(1);
+    const [items, setItems] = useState<ProductInfo[]>([]);
 
-    if (!productData) { return <div>Loading...</div>; };
+    useEffect(() => {
+        localStorage.setItem('cartItems', JSON.stringify(items));
+    }, [items])
+
+    const addToCart = (product: ProductInfo) => {
+        setItems(([...items, product]))
+    }
+
+    const increaseAmount = () => {
+        if (amount === 10) { return; }
+        setAmount(amount + 1);
+    }
+
+    const decreaseAmount = () => {
+        if (amount === 1) { return; }
+        setAmount(amount - 1);
+    }
+
+
+    if (!productData) { return <div>Loading...</div> };
 
     return (
         <main className="p-24">
@@ -35,45 +56,30 @@ const ProductPage = () => {
                     </div>
 
                     <div className="bg-(--color-item-background) rounded-xl p-8">
-                        <div>
-                            <h2 className="text-xl font-thin uppercase" >{productData.brand}</h2>
-                            <h3 className="text-(--color-primary-text) text-4xl font-black mt-4 mb-4">{productData.name}</h3>
-                            <h3 className="text-(--color-secondary-text) dark:text-yellow-500 font-black text-4xl mb-6">${productData.price}</h3>
-                            <hr className="border-b-1 border-neutral-300 dark:border-neutral-600 mb-6" />
+                        <div className="flex flex-col gap-4 mb-8">
+                            <span className="uppercase text-sm tracking-widest text-neutral-500">{productData.brand}</span>
+                            <h1 className="text-4xl font-extrabold text-(--color-primary-text)">{productData.name}</h1>
+                            <p className="text-3xl font-bold text-yellow-500">${productData.price}</p>
                         </div>
 
-                        <div className="grid grid-cols-2 gap-6 mb-12">
-                            <Button className="h-14 rounded-full font-bold" variant={'primary'}>Add to Cart <ShoppingCart /></Button>
-                            <Button className="h-14 rounded-full font-bold" variant={'primary'}>Buy Now <ShoppingBag /></Button>
-                        </div>
-
-                        <div className="mb-6 text-center">
-                            {productData.inStock ?
-                                <span className="flex text-green-700 dark:text-green-400 font-black"><BadgeCheck />In Stock</span> :
-                                <span className="flex text-red-600 font-black"><BadgeAlert /> No Stock</span>}
-                        </div>
-
-                        {/*   <div className="">
-                            <label className="block" htmlFor="productAmount">Amount</label>
-                            <Input className="w-16" id="productAmount" type="number" value={amount} onChange={(e) => setAmount(+e.target.value)} min={1} max={10} step={1} />
-                        </div> */}
+                        <hr className="border-b-1 border-neutral-300 dark:border-neutral-800 mb-6" />
 
 
-                        <div className="relative flex items-center">
-                            <div className="absolute left-0 flex items-center h-full">
-                                <Button variant="ghost" size="sm" onClick={() => setAmount(amount - 1)}>-</Button>
+                        <div className="space-y-4 p-6 bg-(--color-item-background) rounded-xl shadow-lg">
+                            <div className="flex items-center justify-between mb-10">
+                                <div className="flex items-center gap-2">
+                                    <Button size="icon" onClick={() => decreaseAmount()}>-</Button>
+                                    <Input type="number" value={amount} className="w-16 text-center" />
+                                    <Button size="icon" onClick={() => increaseAmount()}>+</Button>
+                                </div>
+                                {productData.inStock
+                                    ? <span className="flex items-center text-green-600 font-semibold"><BadgeCheck className="mr-1" />In Stock</span>
+                                    : <span className="flex items-center text-red-600 font-semibold"><BadgeAlert className="mr-1" />No Stock</span>
+                                }
                             </div>
-                            <Input
-                                type="number"
-                                value={amount}
-                                onChange={(e) => setAmount(+e.target.value)}
-                                className="pl-12 pr-10"
-                            />
-                            <div className="absolute right-0 flex items-center h-full">
-                                <Button variant="ghost" size="sm" onClick={() => setAmount(amount + 1)}>+</Button>
-                            </div>
+                            <Button onClick={() => addToCart(productData)} className="w-full h-14 rounded-full font-bold" variant="primary"><ShoppingCart className="mr-2" />Add to Cart</Button>
+                            <Button className="w-full h-14 rounded-full font-bold" variant="secondary"><ShoppingBag className="mr-2" />Buy Now</Button>
                         </div>
-
                     </div>
                 </div>
 

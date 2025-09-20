@@ -4,8 +4,13 @@ import ExploreCategories from "@/components/home/ExploreCategories";
 import Newsletter from "@/components/home/Newsletter";
 import Footer from "@/components/layout/Footer";
 import Navbar from "@/components/layout/Navbar";
+import axios from "axios";
 
 const HomePage = () => {
+
+    const data = axios.get('http://localhost:3000/');
+    console.log(data)
+
     return (
         <>
             <Navbar />

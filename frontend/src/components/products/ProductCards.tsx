@@ -11,14 +11,17 @@ import ProductCardSkeleton from "./ProductCardSkeleton";
 
 interface Props {
     categoryFilter: 'guitar' | 'amp' | 'pedal' | 'accessory';
+    topSellerFilter?: boolean;
 
 }
 
-const ProductCards = ({ categoryFilter }: Props) => {
+const ProductCards = ({ categoryFilter, topSellerFilter }: Props) => {
 
 
     const { data, loading, error } = useProducts();
-    const topProducts = data.filter(product => product.category === categoryFilter && product.isTopSeller);
+    const topProducts = data.filter(product => topSellerFilter === true
+        ? product.category === categoryFilter && product.isTopSeller === topSellerFilter
+        : product.category === categoryFilter);
 
     return (
         <>

@@ -119,7 +119,7 @@ const Footer = () => {
                             </div>
                             <div className="flex items-center gap-2">
                                 <Mail className="h-4 w-4" />
-                                <span>info@electricguitarstore.com</span>
+                                <span>info@riffstormoverdrive.com</span>
                             </div>
                             <div className="flex items-start gap-2">
                                 <MapPin className="h-4 w-4 mt-1" />
@@ -134,7 +134,7 @@ const Footer = () => {
                 </div>
 
                 <div className="border-t mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 mb-4">
-                    <p className="text-muted-foreground text-sm">© {year} ElectricGuitar Store. All rights reserved.</p>
+                    <p className="text-muted-foreground text-sm">© {year} RiffStorm Overdrive. All rights reserved.</p>
                     <div className="flex gap-6 text-sm text-muted-foreground">
                         <a href="#" className="hover:text-primary transition-colors">
                             Privacy
